@@ -1,4 +1,4 @@
-package Java2;
+package Java2.Lesson1;
 
 import java.awt.*;
 import java.util.Random;
