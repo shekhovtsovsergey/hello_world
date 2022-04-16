@@ -6,11 +6,15 @@ import java.awt.*;
 public class GameCanvas extends JPanel {
     private long lastFrameTime;
     private MainCircles controller;
+    private Background background;
 
     GameCanvas(MainCircles controller) {
         lastFrameTime = System.nanoTime();
         this.controller = controller;
+        Background background = new Background(this);
+        this.background = background;
     }
+
 
     @Override
     protected void paintComponent(Graphics g) { // do
@@ -20,6 +24,8 @@ public class GameCanvas extends JPanel {
         float deltaTime = (currentTime - lastFrameTime) * 0.000000001f;
         lastFrameTime = currentTime;
         controller.onDrawCanvas(this, g, deltaTime);
+        background.setColor(this);
+
         try {
             Thread.sleep(16); // 1 / 60 frames = 16.(6) fps
         } catch (InterruptedException e) {
